@@ -1,6 +1,5 @@
 from django.contrib import admin
 
-from core.models import Hint
 from shorturl import models
 
 

@@ -8,8 +8,8 @@ from rest_framework import serializers
 class ProtocolSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Protocol
-        fields = '__all__'
-        read_only_fields = '__all__'
+        fields = ['id', 'protocol']
+        read_only_fields = ['id', 'protocol']
 
 
 class UrlSerializer(serializers.HyperlinkedModelSerializer):
@@ -18,4 +18,4 @@ class UrlSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Url
         fields = '__all__'
-        read_only_fields = ['url_short']
+        read_only_fields = ['url', 'url_short', 'creator_ip']

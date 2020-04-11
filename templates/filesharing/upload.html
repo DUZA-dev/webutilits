@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/filesharing/upload.css' %}">
+{% endblock %}
+
+{% block form %}
+<form action="{% url 'shorturl:index' %}" method="POST"  enctype="multipart/form-data">
+  {%csrf_token%}
+  <div class="title">Файлообменник</div>
+  {{form.file}}
+  {{form.description}}
+  <div class="passwords">
+    {{form.password_for_delete}}{{form.password_for_download}}
+  </div>
+  <div class="timelifeandpush">
+  <select id="id_time_delete" name="time_delete">
+    <option value="3">Время жизни файла</option>
+    {% for option in form.time_delete %}{{option}}{% endfor %}
+  </select>
+  <button type="submit" name="button">Загрузить</button>
+  </div>
+</form>
+{% endblock %}

@@ -10,17 +10,8 @@ from rest_framework import viewsets
 from core.models import Hint
 from shorturl.models import Url, Protocol
 from shorturl.forms import ShortenerUrlForm
+from shorturl.utilits import get_client_ip
 from shorturl.serializers import UrlSerializer, ProtocolSerializer
-
-
-def get_client_ip(request):
-    # Получаем ip-адрес пользователя/отправителя
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]
-    else:
-        ip = request.META.get('REMOTE_ADDR')
-    return ip
 
 
 def index(request):
@@ -46,7 +37,7 @@ def index(request):
 
         context['url'] = url
     context['form'] = form
-    return render(request, 'index.html', context=context)
+    return render(request, 'shorturl.html', context=context)
 
 
 def redirect(request, hash):
@@ -59,7 +50,7 @@ def redirect(request, hash):
 
 
 class ProtocolViewSet(viewsets.ModelViewSet):
-    queryset = Protocol.objects.all().order_by('-pub_date')
+    queryset = Protocol.objects.all()
     serializer_class = ProtocolSerializer
 
 

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block form %}
+<form class="container-fluid inp-url row" method="POST" action="">
+  {% if url %}
+  <span class="col-12" style="display: flex;justify-content: center; align-items: flex-end; color: white;padding-bottom: 20px;"><a href="http:\\{{ request.get_host }}/{{ url.url_short }}">  {{ request.get_host }}/{{ url.url_short }}</a></span>
+  {% else %}
+  {% endif %}<br>
+  {% csrf_token %}
+  {{form.url}}
+  <br>
+  <div class="col-12" style="display: flex; justify-content: center;">
+    <button class="col-lg-2 col-md-2 col-sm-3 col-7">
+      Сократить
+    </button>
+  </div>
+</form>
+{% endblock %}

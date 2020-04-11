@@ -11,7 +11,7 @@ router.register(r'urls', views.UrlViewSet)
 router.register(r'protocols', views.ProtocolViewSet)
 
 urlpatterns = [
-    url(r'^$', views.index),
+    url(r'^$', views.index, name="index"),
     url(r'^(?P<hash>\w{10})/$', views.redirect),
 
     url(r'^api/', include(router.urls)),
