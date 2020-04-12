@@ -57,3 +57,27 @@ class UploadForm(forms.ModelForm):
             raise ValidationError('Файл слишком большой. Максимальный размер файла %i MiB.') % max_megabyte
 
         return file
+
+
+class DeletePasswordForm(forms.Form):
+    password = forms.CharField(widget=forms.PasswordInput(
+        attrs={'placeholder': 'Пароль для удаления'}
+    ))
+
+    def clean_password(self):
+        password = self.cleaned_data.get('password', None)
+        if not password:
+            raise ValidationError('Поле пароля - обязательно.')
+        return md5(password.encode('utf8')).hexdigest()
+
+
+class DownloadPasswordForm(forms.Form):
+    password = forms.CharField(widget=forms.PasswordInput(
+        attrs={'placeholder': 'Пароль для скачивания'}
+    ))
+
+    def clean_password(self):
+        password = self.cleaned_data.get('password', None)
+        if not password:
+            raise ValidationError('Поле пароля - обязательно.')
+        return md5(password.encode('utf8')).hexdigest()

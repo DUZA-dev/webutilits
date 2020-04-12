@@ -105,12 +105,44 @@
 .timelifeandpush {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .timelifeandpush > select {
   width: 49.5%;
+  height: 40px;
 }
 
-.timelifeandpush > button {
+.timelifeandpush > input[type="submit"] {
   width: 49.5%;
+}
+
+div.link-to-file {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+span.link-to-file {
+  padding: 10px;
+  background-color: black;
+  color: white;
+  width: 100%;
+  border-radius: 5px;
+}
+
+span.link-to-file > a {
+  background-color: white;
+  padding: 0 10px;
+  border-radius: 5px;
+}
+
+div.link-to-file > span::selection {
+  background-color: white;
+  color: black;
+}
+
+span.link-to-file > a::selection {
+  background-color: black;
+  color: white;
 }

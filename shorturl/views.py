@@ -7,10 +7,9 @@ from django.shortcuts import render, get_object_or_404
 
 from rest_framework import viewsets
 
-from core.models import Hint
 from shorturl.models import Url, Protocol
 from shorturl.forms import ShortenerUrlForm
-from shorturl.utilits import get_client_ip
+from core.utilits import get_client_ip, incCountHit
 from shorturl.serializers import UrlSerializer, ProtocolSerializer
 
 
@@ -42,8 +41,7 @@ def index(request):
 
 def redirect(request, hash):
     url = get_object_or_404(Url, url_short=hash)
-    Hint(content_object=url, ip=get_client_ip(request)).save()
-
+    incCountHit(request, url)
     return HttpResponse(
         '<script>window.location.href = "%s://%s";</script>' % (url.protocol.protocol, url.url)
     )

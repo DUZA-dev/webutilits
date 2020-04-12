@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block form %}
-<form class="container-fluid inp-url row" method="POST" action="">
+<form class="main-form" method="POST" action="">
   {% if url %}
   <span class="col-12" style="display: flex;justify-content: center; align-items: flex-end; color: white;padding-bottom: 20px;"><a href="http:\\{{ request.get_host }}/{{ url.url_short }}">  {{ request.get_host }}/{{ url.url_short }}</a></span>
   {% else %}

@@ -1,5 +1,5 @@
 from django.db import models
-from django.urls import reverse_lazy
+from django.urls import reverse
 from django.contrib.contenttypes.fields import GenericRelation
 
 from core.models import Hint, Download
@@ -32,4 +32,4 @@ class File(models.Model):
     download = GenericRelation(Download, related_name="files")
 
     def get_absolute_url(self):
-        return reverse_lazy('filesharing:file', kwargs={'file': self.name})
+        return reverse('filesharing:file', args={self.id})

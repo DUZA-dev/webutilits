@@ -21,8 +21,8 @@ from django.urls import path
 from django.conf.urls import url, include
 
 urlpatterns = [
-    url('^shorturl', include('shorturl.urls', namespace='shorturl')),
-    url('^filesharing', include('filesharing.urls', namespace='filesharing')),
+    url('^filesharing/', include('filesharing.urls', namespace='filesharing')),
+    url('^shorturl/', include('shorturl.urls', namespace='shorturl')),
 
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

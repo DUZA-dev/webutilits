@@ -13,9 +13,6 @@ class UserCounter(models.Model):
 
     content_object = GenericForeignKey('content_type', 'object_id')
 
-    def __str__(self):
-        return self.count
-
     class Meta:
         abstract = True
 
