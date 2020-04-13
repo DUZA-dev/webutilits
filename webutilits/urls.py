@@ -20,9 +20,40 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
 
+from django.views.decorators.cache import cache_page
+from django.contrib.sitemaps import GenericSitemap
+from django.contrib.sitemaps import views   # Представление
+
+
+from core.sitemap import HomeSitemap, sitemap_filesharing
+from core import views as core
+
+handler404 = "core.views.handler404"
+
+sitemaps = {
+    "home": HomeSitemap,
+    "filesharing": GenericSitemap(sitemap_filesharing, priority=0.5),
+}
+
+
 urlpatterns = [
+    url(
+        r'^sitemap\.xml$',
+        cache_page(86400)(views.index),
+        {'sitemaps': sitemaps}
+    ),
+    url(
+        r'^sitemap-(?P<section>\w+)\.xml$',
+        cache_page(86400)(views.sitemap),
+        {'sitemaps': sitemaps},
+        name='django.contrib.sitemaps.views.sitemap'
+    ),
+
+    url('^privatenotes/', include('privatenote.urls', namespace='privatenote')),
     url('^filesharing/', include('filesharing.urls', namespace='filesharing')),
     url('^shorturl/', include('shorturl.urls', namespace='shorturl')),
+
+    url('^$', core.index),
 
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /admin/
+Sitemap: https://xn--80ajiff1g.com/sitemap.xml
+Sitemap: https://ищейка.com/sitemap-home.xml
+Sitemap: https://ищейка.com/sitemap-article.xml
+Sitemap: https://ищейка.com/sitemap-telephones.xml

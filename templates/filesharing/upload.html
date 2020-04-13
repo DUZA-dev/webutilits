@@ -2,12 +2,20 @@
 {% load static %}
 {% load qr_code %}
 
+{% block title %}Бесплатный файлообменник{% endblock %}
+{% block title_ %}Бесплатный файлообменник{% endblock %}
+
+{% block description %}На нашем сайте, вы можете бесплатно загружать и делиться файлами со всем миром.{% endblock %}
+{% block description_ %}На нашем сайте, вы можете бесплатно загружать и делиться файлами со всем миром.{% endblock %}
+
+{% block keywords %}файлообменник, бесплатный хостинг файлов{% endblock %}
+
 {% block css %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/filesharing/upload.css' %}">
 {% endblock %}
 
 {% block form %}
-<form action="{% url 'shorturl:index' %}" method="POST" enctype="multipart/form-data" name="uploadFile" class="main-form vtcenter">
+<form action="{% url 'filesharing:index' %}" method="POST" enctype="multipart/form-data" name="uploadFile" class="main-form vtcenter">
   {%csrf_token%}
   <div class="title">Файлообменник</div>
   {{form.file}}

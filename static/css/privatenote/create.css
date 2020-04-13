@@ -4,7 +4,7 @@
 }
 
 .passwords > * {
-  width: 46%;
+  width: 100%;
 }
 
 .dropcontainer {
@@ -147,29 +147,31 @@ span.link-to-file > a::selection {
   color: white;
 }
 
-.content {
-  justify-content: space-between;
+.note-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
-@media (max-width: 1200px) {
-  .main-form.vtcenter {
-    position: relative;
-    top: auto;
-    transform: none;
-  }
-  .passwords {
+.note {
+  background: rgba(256, 256, 256, 0.546);
+  padding: 10px;
+  min-width: 310px;
+  border-radius: 5px;
+}
+
+
+.content {
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width : 1200px) {
+  div.timelifeandpush {
     flex-wrap: wrap;
   }
-  .passwords > *, .timelifeandpush > select, .timelifeandpush > input[type="submit"] {
+  div.note, div.timelifeandpush > *, .timelifeandpush > input[type="submit"] {
     width: 100%;
-  }
-  .timelifeandpush {
-    flex-direction: column;
-  }
-  .link-to-file {
-    flex-wrap: wrap;
-    justify-content: center;
-    text-align: center;
-    justify-content: center;
   }
 }

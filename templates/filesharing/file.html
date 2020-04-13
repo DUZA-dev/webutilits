@@ -2,6 +2,15 @@
 {% load static %}
 {% load qr_code %}
 
+
+{% block title %}Скачать файл {{file.name}}{% endblock %}
+{% block title_ %}Скачать файл {{file.name}}{% endblock %}
+
+{% block description %}{% if file.description %}{{file.description}}{% else %}Вы можете бесплатно скачать данный файл у нас на сайте.{% endif %}{% endblock %}
+{% block description_ %}{% if file.description %}{{file.description}}{% else %}Вы можете бесплатно скачать данный файл у нас на сайте.{% endif %}{% endblock %}
+
+{% block keywords %}{{file.name}},скачать бесплатно{% endblock %}
+
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/filesharing/file.css' %}">
 {% endblock %}

@@ -19,7 +19,12 @@ class UploadForm(forms.ModelForm):
 
     class Meta:
         model = File
-        fields = ['file', 'description', 'password_for_delete', 'password_for_download']
+        fields = [
+            'file',
+            'description',
+            'password_for_delete',
+            'password_for_download'
+        ]
 
         widgets = {
             'password_for_delete': forms.PasswordInput(

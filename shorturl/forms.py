@@ -5,7 +5,7 @@ from django import forms
 
 class ShortenerUrlForm(forms.Form):
     # Форма для ввода ссылки для сокращения
-    url = forms.URLField(
+    url = forms.CharField(
         max_length=4000,
         widget=forms.TextInput(attrs={
             'placeholder': 'Введите ссылку',
@@ -13,7 +13,7 @@ class ShortenerUrlForm(forms.Form):
     )
 
     def clean_url(self):
-        full_url = self.cleaned_data['url']
+        full_url = self.cleaned_data.get('url', None)
 
         regular_expression = r"^(\w*):[\\\/]{2}(.*)$"
         regular_execute = re.match(regular_expression, full_url)

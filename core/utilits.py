@@ -1,6 +1,3 @@
-from core.models import Hint, Download
-
-
 def get_client_ip(request):
     # Получаем ip-адрес пользователя/отправителя
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')

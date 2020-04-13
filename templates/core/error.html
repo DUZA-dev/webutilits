@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title_ %}{{title_}}{%endblock%}
+{% block content %}
+    <div class="main">
+      <div class="title">{{title_}}</div>
+      <div class="error-body">
+        {{message}}
+      </div>
+    </div>
+{% endblock %}

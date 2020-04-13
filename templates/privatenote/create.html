@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load qr_code %}
+
+{% block title %}Создать приватную заметку{% endblock %}
+{% block title_ %}Создать приватную заметку{% endblock %}
+
+{% block description %}Сервис предоставляет возможность создания приватных бесплатных заметок{% endblock %}
+{% block description_ %}Сервис предоставляет возможность создания приватных бесплатных заметок{% endblock %}
+
+{% block keywords %}заметки,приватные заметки{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/privatenote/create.css' %}">
+{% endblock %}
+
+{% block form %}
+<form action="{% url 'privatenote:index' %}" method="POST" enctype="multipart/form-data" name="createNote" class="main-form">
+  {%csrf_token%}
+  <div class="title">Приватные заметки</div>
+  {{form.note}}
+  <div class="passwords">
+    {{form.password_for_read}}
+  </div>
+  <div class="timelifeandpush">
+  <select id="id_time_delete" name="time_delete">
+    <option value="3">Время жизни заметки</option>
+    {% for option in form.time_delete %}{{option}}{% endfor %}
+  </select>
+  <input type="submit" value="Загрузить">
+  </div>
+  {% if note_url %}<div class="link-to-file"><span class='link-to-file'>Запетка сохранена и доступна по <a href='{{note_url}}'>ссылке</a></span>{% qr_from_text file_url size="T" %}</div>{% endif %}
+  {{form.errors}}
+</form>
+{% endblock %}

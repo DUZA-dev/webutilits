@@ -37,10 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
+    'django.contrib.sitemaps',
     'qr_code',
     'shorturl',
     'filesharing',
+    'privatenote',
     'core',
 ]
 

@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.contrib.contenttypes.fields import GenericRelation
 
 from core.models import Hint
@@ -34,3 +35,6 @@ class Url(models.Model):
         blank=False,
         null=False
     )
+
+    def get_absolute_url(self):
+        return reverse('shorturl:shorturl', args={self.url_short})

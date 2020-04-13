@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load qr_code %}
+
+{% block title %}Создать приватную заметку{% endblock %}
+{% block title_ %}Создать приватную заметку{% endblock %}
+
+{% block description %}Сервис предоставляет возможность создания приватных бесплатных заметок{% endblock %}
+{% block description_ %}Сервис предоставляет возможность создания приватных бесплатных заметок{% endblock %}
+
+{% block keywords %}заметки,приватные заметки{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/privatenote/create.css' %}">
+{% endblock %}
+
+{% block form %}
+<form action="{% url 'privatenote:note' note=note.url %}" method="POST" enctype="multipart/form-data" name="readNote" class="main-form">
+  {%csrf_token%}
+  <div class="title">Содержимое записки</div>
+  {% if note.password_for_read %}<input type="password" placeholder="Введите пароль" name="password" id="password" value="">{% endif %}<input type="submit" value="Читать">
+</form>
+<div class="note-main"></div>
+{% endblock %}
+
+{% block js %}<script src="{% static 'js/privatenote/read.js' %}"></script>{% endblock %}

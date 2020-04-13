@@ -1,17 +1,24 @@
 {% extends 'base.html' %}
+{% load qr_code %}
+
+{% block title %}Сократить ссылку до минимального уровня{% endblock %}
+{% block title_ %}Сократить ссылку до минимального уровня{% endblock %}
+
+{% block description %}Сервис предоставляет услугу сокращения ваших ссылок, с участием нашего домена.{% endblock %}
+{% block description_ %}Сервис предоставляет услугу сокращения ваших ссылок, с участием нашего домена.{% endblock %}
+
+{% block keywords %}сохратить ссылку,сокращение ссылок{% endblock %}
+
 {% block form %}
 <form class="main-form" method="POST" action="">
+  <div class="title">Сократить ссылку</div>
   {% if url %}
-  <span class="col-12" style="display: flex;justify-content: center; align-items: flex-end; color: white;padding-bottom: 20px;"><a href="http:\\{{ request.get_host }}/{{ url.url_short }}">  {{ request.get_host }}/{{ url.url_short }}</a></span>
-  {% else %}
+  <span style="display: flex;justify-content: center; align-items: flex-end; color: white;padding-bottom: 20px;"><a href="{{ url }}">{{ url }}</a></span>
+  <center>{% qr_from_text url size="T" %}</center>
   {% endif %}<br>
   {% csrf_token %}
   {{form.url}}
   <br>
-  <div class="col-12" style="display: flex; justify-content: center;">
-    <button class="col-lg-2 col-md-2 col-sm-3 col-7">
-      Сократить
-    </button>
-  </div>
+    <input type="submit" value="Сократить">
 </form>
 {% endblock %}

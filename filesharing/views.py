@@ -4,8 +4,6 @@ from datetime import timedelta, datetime
 from django.utils import timezone
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse, StreamingHttpResponse
-from django.utils.html import escape
-from django.urls import reverse
 
 from webutilits.settings import MEDIA_ROOT
 from core.utilits import get_client_ip, incCountHit, incCountDownload
@@ -39,8 +37,9 @@ def upload(request):
 
         file_object.save()
 
-        context['file_url'] = request.build_absolute_uri(file_object.get_absolute_url())
-        print(context)
+        context['file_url'] = request.build_absolute_uri(
+            file_object.get_absolute_url()
+        )
     context['form'] = form
     return render(request, 'filesharing/upload.html', context)
 
@@ -49,9 +48,11 @@ def file(request, file_id):
     context = dict()
 
     context['file'] = get_object_or_404(File, id=file_id)
-    context['file_url'] = request.build_absolute_uri(context['file'].get_absolute_url())
     context['delete_form'] = DeletePasswordForm()
     context['download_form'] = DownloadPasswordForm()
+    context['file_url'] = request.build_absolute_uri(
+        context['file'].get_absolute_url()
+    )
 
     # Инкрементирую счетчик просмотров
     incCountHit(request, context['file'])

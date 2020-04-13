@@ -3,6 +3,10 @@ form.act_password {
   margin-bottom: 15px
 }
 
+.content {
+  justify-content: space-between;
+}
+
 .main-form > .title {
   display: flex;
   justify-content: space-between;
@@ -67,4 +71,25 @@ div.blockdownloadfile > div.meta > div.listcount > .countdownloads > svg {
   height: 18px;
   width: 25px;
   margin-left: 5px;
+}
+
+@media (max-width: 1200px) {
+  .main-form.vtcenter {
+    position: relative;
+    top: auto;
+    transform: none;
+  }
+  .title {
+    flex-direction: column-reverse;
+  }
+  .meta, .listcount {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    justify-content: center;
+  }
+  .listcount > * {
+    display: flex;
+    justify-content: center;
+  }
 }
