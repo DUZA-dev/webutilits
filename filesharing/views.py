@@ -7,6 +7,7 @@ from django.http import JsonResponse, StreamingHttpResponse
 
 from webutilits.settings import MEDIA_ROOT
 from core.utilits import get_client_ip, incCountHit, incCountDownload
+from core.tasks import delete_file_schedule
 from filesharing.models import File
 from filesharing.forms import (
     UploadForm,
@@ -36,6 +37,8 @@ def upload(request):
         file_object.time_delete = datetime.now(tz=timezone.utc) + DELETE_TIME_DELTA[choice_delta_del]
 
         file_object.save()
+
+        delete_file_schedule(file_object.id, schedule=DELETE_TIME_DELTA[choice_delta_del])
 
         context['file_url'] = request.build_absolute_uri(
             file_object.get_absolute_url()

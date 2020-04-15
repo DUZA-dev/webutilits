@@ -6,9 +6,10 @@ from django.utils import timezone
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 
-from core.utilits import get_client_ip
-from privatenote.forms import NoteForm
 from privatenote.models import Note
+from privatenote.forms import NoteForm
+from core.utilits import get_client_ip
+from core.tasks import delete_note_schedule
 
 DELETE_TIME_DELTA = {
     '1': timedelta(hours=1),
@@ -36,6 +37,8 @@ def index(request):
         ]).encode("utf8")).hexdigest()
 
         note_object.save()
+
+        delete_note_schedule(note_object.id, schedule=DELETE_TIME_DELTA[choice_delta_del])
 
         context['note_url'] = request.build_absolute_uri(note_object.get_absolute_url())
 
