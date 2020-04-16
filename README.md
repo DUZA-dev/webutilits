@@ -7,8 +7,8 @@
 | Утилита | Документация |
 | ------- | ------------ |
 | Файлообменник | [filesharing/README.md](filesharing/README.md) |
-| Сокращение ссылок | [filesharing/README.md](filesharing/README.md) |
-| Приватные заметки/записки | [filesharing/README.md](filesharing/README.md) |
+| Сокращение ссылок | [shorturl/README.md](shorturl/README.md) |
+| Приватные заметки/записки | [privatenote/README.md](privatenote/README.md) |
 
 Документация по каждой из утилит приведена в таблице выше в виде ссылок.
 
